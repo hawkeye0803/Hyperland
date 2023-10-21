@@ -38,34 +38,7 @@ flower4Texture.magFilter = NearestFilter;
 flower5Texture.magFilter = NearestFilter;
 flower6Texture.magFilter = NearestFilter;
 
-export const imgData = [
-  { texture: "grass1", src: grass1, isOpen: false },
-  { texture: "grass2", src: grass2, isOpen: false },
-  { texture: "grass3", src: grass3, isOpen: false },
-  { texture: "grass4", src: grass4, isOpen: false },
-  { texture: "grass5", src: grass5, isOpen: false },
-  { texture: "grass6", src: grass6, isOpen: false },
-  { texture: "flower1", src: flower1, isOpen: false },
-  { texture: "flower2", src: flower2, isOpen: false },
-  { texture: "flower3", src: flower3, isOpen: false },
-  { texture: "flower4", src: flower4, isOpen: false },
-  { texture: "flower5", src: flower5, isOpen: false },
-  { texture: "flower6", src: flower6, isOpen: false },
-];
-
 export {
-  grass1,
-  grass2,
-  grass3,
-  grass4,
-  grass5,
-  grass6,
-  flower1,
-  flower2,
-  flower3,
-  flower4,
-  flower5,
-  flower6,
   grass1Texture,
   grass2Texture,
   grass3Texture,
@@ -78,4 +51,5 @@ export {
   flower4Texture,
   flower5Texture,
   flower6Texture,
+
 };
