@@ -12,6 +12,7 @@ const ConnectWallet = () => {
   const wallets = useWallets();
   const accounts = useAccounts();
   const { mutate: connect } = useConnectWallet();
+  console.log(accounts[0]?.address);
 
   return (
     <div className="flex justify-center  items-center">

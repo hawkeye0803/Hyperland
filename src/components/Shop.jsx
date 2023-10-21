@@ -75,7 +75,7 @@ const Shop = () => {
             </div>
             <div className="w-full make-flex justify-between my-2">
               <div className=" py-2 px-3 border make-flex rounded-md bg-[#e9e9e9] h-8 text-lg w-[160px]">
-                {buyNFTdata.price}$
+                5$
               </div>
               <button
                 className="btn w-[100px] hover:scale-105"

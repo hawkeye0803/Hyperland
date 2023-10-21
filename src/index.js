@@ -10,6 +10,7 @@ import {
 } from "@mysten/dapp-kit";
 import { getFullnodeUrl } from "@mysten/sui.js/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { StrictMode } from "react";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,11 +23,13 @@ const queryClient = new QueryClient();
 
 
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <SuiClientProvider networks={networkConfig}>
-      <WalletProvider>
-        <App />
-      </WalletProvider>
-    </SuiClientProvider>
-  </QueryClientProvider>
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <SuiClientProvider networks={networkConfig}>
+        <WalletProvider>
+          <App />
+        </WalletProvider>
+      </SuiClientProvider>
+    </QueryClientProvider>
+  </StrictMode>
 );
