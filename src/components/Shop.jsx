@@ -42,6 +42,7 @@ const Shop = () => {
           console.log(result);
           setLoader(false);
           setBuyMenu(false);
+          window.location.reload();
         },
       }
     );

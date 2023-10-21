@@ -83,6 +83,14 @@ export const useStore = create((set) => ({
       }));
     }
   },
+  WorldData: [],
+  setWorldData: (data) => {
+    if (data) {
+      set(() => ({
+        WorldData: [data],
+      }));
+    }
+  },
   activeWorldID: 1,
   setActiveWorldID: (toggle) => {
     set(() => ({ activeWorldID: toggle }));

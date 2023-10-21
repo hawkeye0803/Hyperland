@@ -22,6 +22,7 @@ import {
 import { useStore } from "../hooks/useStore";
 import { useParams } from "react-router-dom";
 import { CONTRACT_ADDRESS } from "../utils/constants";
+import axios from "axios";
 
 const Game = () => {
   const [
@@ -80,52 +81,16 @@ const Game = () => {
   };
 
   useEffect(() => {
-    fetch();
+    const fetchData = async () => {
+      // const data = await retrieveData(params.id);
+      const res = await axios.get(
+        `https://ipfs.io/ipfs/${params.id}/world.json`
+      );
+      console.log(res.data);
+      setData(res.data);
+    };
+    fetchData();
   }, []);
-
-  // useEffect(() => {
-  //   const getAllNFTsMinted = async () => {
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     await provider.send("eth_requestAccounts", []);
-  //     const signer = await provider.getSigner();
-  //     try {
-  //       const res = await getAllNFTsTotalSupplyItemURI(signer);
-  //       setAllNFTsData(res);
-  //       console.log(res);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getAllNFTsMinted();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchItemNFTsData = async () => {
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     await provider.send("eth_requestAccounts", []);
-  //     const signer = await provider.getSigner();
-  //     try {
-  //       const tempData = await fetchUserItemMetadata(signer);
-  //       console.log(tempData);
-  //       setNFTData(tempData);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchItemNFTsData();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     // const data = await retrieveData(params.id);
-  //     const res = await axios.get(
-  //       `https://ipfs.io/ipfs/${params.id}/world.json`
-  //     );
-  //     console.log(res.data);
-  //     setData(res.data);
-  //   };
-  //   fetchData();
-  // }, []);
 
   return (
     <div className="game-app">

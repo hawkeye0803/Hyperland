@@ -7,13 +7,14 @@ import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { useSignAndExecuteTransactionBlock } from "@mysten/dapp-kit";
 import { CONTRACT_ADDRESS } from "../utils/constants";
 import { makeFileObjects, uploadWeb3 } from "../utils/web3Storage";
+import { getFullnodeUrl, SuiClient } from "@mysten/sui.js/client";
 
 const Home = () => {
   const [loader, setLoader] = useState(false);
   const [controlMenu, setControlMenu] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const [loadGame, setLoadGame] = useState(false);
-  const [worldList, setWorldList] = useState([]);
+  const [lworldData, setLWorldData] = useState("");
   const [newWorldMenu, setNewWorldMenu] = useState(false);
   const [worldName, setWorldName] = useState("");
   // const [worldID, setWorldID] = useState("");
@@ -21,47 +22,46 @@ const Home = () => {
   const navigate = useNavigate();
   const { mutate: funcCall } = useSignAndExecuteTransactionBlock();
 
+  const [setNFTData, worldData] = useStore((state) => [
+    state.setNFTData,
+    state.WorldData,
+  ]);
+
+  const client = new SuiClient({
+    url: getFullnodeUrl("devnet"),
+  });
+
   const createWorld = async () => {
+    setLoader(true);
+    console.log("creating world");
     const CID = await uploadWeb3(
       await makeFileObjects({ cubes: [], items: [] })
     );
+
     const txb = new TransactionBlock();
-    if (worldName && worldDescription) {
-      console.log("Hello");
-      setLoader(true);
-      txb.moveCall({
-        target: `${CONTRACT_ADDRESS}::chat::post_with_ref`,
-        arguments: [
-          txb.pure.address(
-            "0x2960279b3a26e5f0de26b820df947720803dd612082d94d8687f3d4cf14beb32"
-          ),
-          txb.pure(worldName),
-          txb.pure.address(
-            "0xf2420e8710d25a606457d323149e8d952063a942ed159cf3dccae2ddd5d4f0ab"
-          ),
-          txb.pure(worldDescription),
-        ],
-      });
-      funcCall(
-        {
-          transactionBlock: txb,
+
+    setLoader(true);
+    txb.moveCall({
+      target: `${CONTRACT_ADDRESS}::game::mint_to_sender`,
+      arguments: [txb.pure("2"), txb.pure(`land`), txb.pure(CID)],
+    });
+    funcCall(
+      {
+        transactionBlock: txb,
+      },
+      {
+        onError: (err) => {
+          console.log(err);
         },
-        {
-          onError: (err) => {
-            console.log(err);
-          },
-          onSuccess: (result) => {
-            console.log(result);
-            setLoader(false);
-            navigate(`/land/${CID}`);
-          },
-        }
-      );
-    }
+        onSuccess: (result) => {
+          console.log(result);
+          setLoader(false);
+          navigate(`/land/${CID}`);
+        },
+      }
+    );
   };
-
-  const [setActiveWorldID] = useStore((state) => [state.setActiveWorldID]);
-
+  console.log(worldData);
   return (
     <div className="homepage">
       {newWorldMenu && (
@@ -132,8 +132,9 @@ const Home = () => {
           </div>
         </div>
       )}
+      <Header isHome={true} />
       {controlMenu && (
-        <div className="control setting menu absolute h-screen w-screen make-flex">
+        <div className="control z-10 setting menu absolute h-screen w-screen make-flex">
           <div>
             <div
               className="absolute w-[500px] make-flex justify-end px-2 pt-2 cursor-pointer"
@@ -196,12 +197,24 @@ const Home = () => {
           <h2 className="font-bold text-[40px] text-center my-12 make-flex">
             Hyperland
           </h2>
-          <button
-            className="btn w-[400px] hover:bg-[#f4f4f4] text-base"
-            onClick={() => setNewWorldMenu(true)}
-          >
-            Create Land
-          </button>
+
+          {worldData.length ? (
+            <button
+              className="btn w-[400px] hover:bg-[#f4f4f4] text-base"
+              onClick={() =>
+                navigate(`/land/${worldData[0].content.fields.url}`)
+              }
+            >
+              Continue Game
+            </button>
+          ) : (
+            <button
+              className="btn w-[400px] hover:bg-[#f4f4f4] text-base"
+              onClick={() => createWorld()}
+            >
+              Create Land
+            </button>
+          )}
           <button
             className="btn w-[400px] hover:bg-[#f4f4f4] text-base"
             onClick={() => setProfileMenu(true)}
@@ -218,7 +231,6 @@ const Home = () => {
         </div>
       </div>
       {loader && <Loader />}
-      <Header isHome={true} />
     </div>
   );
 };

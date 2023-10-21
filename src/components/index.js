@@ -12,7 +12,6 @@ import WalletConnect from "./ConnectWallet";
 import TextureSelector from "./TextureSelector";
 import StartMenu from "./StartMenu";
 import Shop from "./Shop";
-import ChatBox from "./ChatBox";
 import Item from "./Item";
 import Items from "./Items";
 import Inventory from "./Inventory";
@@ -33,7 +32,6 @@ export {
   TextureSelector,
   StartMenu,
   Shop,
-  ChatBox,
   Item,
   Items,
   Inventory,

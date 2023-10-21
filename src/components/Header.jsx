@@ -22,6 +22,9 @@ const Header = ({ isHome }) => {
     activeWorldID,
     infoBar,
     setInfoBar,
+    WorldData,
+    NFTData,
+    worldData,
   ] = useStore((state) => [
     state.cubes,
     state.items,
@@ -34,6 +37,9 @@ const Header = ({ isHome }) => {
     state.activeWorldID,
     state.infoBar,
     state.setInfoBar,
+    state.WorldData,
+    state.NFTData,
+    state.WorldData,
   ]);
 
   const { mutate: funcCall } = useSignAndExecuteTransactionBlock();
@@ -47,13 +53,12 @@ const Header = ({ isHome }) => {
     };
     const CID = await uploadWeb3(await makeFileObjects(objData));
     console.log("CID : " + CID);
-
     txb.moveCall({
-      target: `${CONTRACT_ADDRESS}::game::update_url`,
+      target: `${CONTRACT_ADDRESS}::game::mint_to_sender`,
       arguments: [
-        txb.pure(name),
-        txb.pure(`${name} Description`),
-        txb.pure(cid),
+        txb.pure(parseInt(worldData[0]?.content?.fields.name + 1).toString()),
+        txb.pure(`land`),
+        txb.pure(CID),
       ],
     });
     funcCall(
@@ -67,12 +72,14 @@ const Header = ({ isHome }) => {
         onSuccess: (result) => {
           console.log(result);
           setLoader(false);
-          setBuyMenu(false);
         },
       }
     );
   };
-
+  console.log(
+    NFTData,
+    (parseInt(worldData[0]?.content?.fields.name) + 1).toString()
+  );
   return (
     <div className="absolute z-10 top-0 w-screen flex flex-col">
       <div className="w-full flex text-[2rem] justify-between items-center h-16 px-5 ">
@@ -107,7 +114,7 @@ const Header = ({ isHome }) => {
             <button
               className="btn hover:scale-[102%] text-white"
               style={{ backgroundColor: "#5A5A8E" }}
-              // onClick={() => saveGameData()}
+              onClick={() => saveGameData()}
             >
               Save
             </button>
