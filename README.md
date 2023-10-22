@@ -28,7 +28,7 @@ We want this game to be fun and easy for anyone to use not just ultra pro max te
 - [x] Items Marketplace
 - [x] Hot keys Integration
 - [ ] Contract Improvement
-- [ ] Zk Login* for web2 Users
+- [ ] [Zk Login](https://github.com/hawkeye0803/Hyperland/issues/1)* for web2 Users
 	- [ ] Google
 	- [ ] Facebook
 	- [ ] Twitch
