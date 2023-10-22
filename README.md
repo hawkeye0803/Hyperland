@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Hyperland
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A **3D Sandbox Game** built on top of SUI utilizing it's fluid **Object** feature i.e "Even fungible is non fungible".
 
-## Available Scripts
+##  Game Info
+Hyperland is an open world where anyone can build their own space which is minted as an NFT on Sui devnet and users can purchase items from marketplace to customize their land. Soon after our ZkLogin Integration Web2 users won't even know they are on Web3. Also Parallel gaming with your friends and P2P chatting system is rolling out soon. Stay tuned for that....
 
-In the project directory, you can run:
+We want this game to be fun and easy for anyone to use not just ultra pro max tech guys. So the upcoming features apart from below mentioned one's will mostly roll out on the whole user base thought not just devs. 
 
-### `yarn start`
+> NOTE: To onboard Web2 users login can be kept using Google's OAuth etc but inside many features will be implemented in such a way that they'll encouraged to use wallet and learn Web3. That's the main purpose apart from having relaxation time.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Hotkeys
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+|Key| Action |
+|-----------|--|
+|      1-7     | Cube Switching |
+| I | Basic Info
+| E | Settings Menu
+| Q | Inventory
+| B | Items Marketplace
 
-### `yarn test`
+## TODOs
+- [x] Open World in Three.Js
+- [x] Sui Contract Integration
+- [x] Sui Wallet Integration
+- [x] Items Marketplace
+- [x] Hot keys Integration
+- [ ] Contract Improvement
+- [ ] Zk Login* for web2 Users
+	- [ ] Google
+	- [ ] Facebook
+	- [ ] Twitch
+- [ ] Avatar Selection
+- [ ] Multiple Lands
+- [ ] Deployment on Mainnet
+- [ ] Parallel Gaming
+- [ ] Peer 2 Peer chatting
+- [ ] Global Chat
+- [ ] Land customization
+- [ ] Land Marketplace
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+##  Local host and Deployment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Checkout the website https://hyperland-pi.vercel.app
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To install dependencies, run:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ ``` Yarn install ```
+ 
+To launch Hyperland,  run:
+```Yarn start ```
 
-### `yarn eject`
+Open [http://localhost:3000](http://localhost:3000) to play it in your browser.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Initial Thought Process
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+```mermaid
+sequenceDiagram
+User ->> Land : Owned by User
+User->> Item: Owned the Items
+Item --> Land: Used on the Land
+User --> Land : Stays on Land
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
