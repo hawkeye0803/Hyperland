@@ -2,6 +2,8 @@
 
 A **3D Sandbox Game** built on top of SUI utilizing it's fluid **Object** feature i.e "Even fungible is non fungible".
 
+![Game Image](https://devfolio-prod.s3.ap-south-1.amazonaws.com/hackathons/720066c363054ce08d0fcfa0158d48f6/projects/afd84b361d134794ba8440d1ef7b4b3d/177cd87b-1386-4b5d-ab71-fd58891d191a.png)
+
 ##  Game Info
 Hyperland is an open world where anyone can build their own space which is minted as an NFT on Sui devnet and users can purchase items from marketplace to customize their land. Soon after our ZkLogin Integration Web2 users won't even know they are on Web3. Also Parallel gaming with your friends and P2P chatting system is rolling out soon. Stay tuned for that....
 
